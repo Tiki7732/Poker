@@ -15,13 +15,18 @@ describe "Part 2" do
 
         describe "#shuffle_cards" do 
             it "should suffle cards" do
+                unshuffled = deck.cards.dup
                 deck.shuffle_cards
-                expect(deck.cards).to receive(:shuffle!)
+                expect(unshuffled).to_not eq(deck.cards)
             end
         end
 
         describe "#deal" do
-            it "should remove top card from deck"
+            it "should remove top card from deck" do
+                top_card = deck.cards.first
+                expect(deck.deal).to eq(top_card)
+                expect(deck.cards).to_not include(top_card)
+            end
         end
 
 
