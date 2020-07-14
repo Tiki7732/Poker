@@ -1,2 +1,2 @@
 require 'rspec'
-require 'card.rb'
+require 'card'
