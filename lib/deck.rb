@@ -3,7 +3,7 @@ require_relative 'card'
 class Deck
 
     #SPADES = [🂡, 🂢, 🂣, 🂤, 🂥, 🂦, 🂧, 🂨, 🂩, ]
-    SYMBOLS = [:A, :2, :3, :4, :5, :6, :7, :8, :9, :10, :J, :Q, :K]
+    SYMBOLS = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'].map(&:to_sym)
     SUITS = [:♠, :♥, :♦, :♣]
 
     
@@ -24,9 +24,14 @@ class Deck
 
     end
 
+    def show_cards
+        cards.each { |card| puts card.to_s }
+    end
+
     def shuffle_cards
         @cards.shuffle!
     end
-
-
 end
+
+d = Deck.new
+d.show_cards
