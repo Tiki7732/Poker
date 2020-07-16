@@ -9,7 +9,7 @@ class Card
     end
 
     def to_s
-        "#{symbol}".colorize(color)
+        "#{symbol}".colorize(color) + suit.to_s.colorize(color)
     end
 
 end
