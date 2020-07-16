@@ -25,13 +25,23 @@ class Deck
     end
 
     def show_cards
-        cards.each { |card| puts card.to_s }
+        cards.each { |card| print card.to_s + " "}
     end
 
     def shuffle_cards
         @cards.shuffle!
     end
+
+    def deal
+        cards.shift
+    end
 end
 
-d = Deck.new
-d.show_cards
+# d = Deck.new
+# d.show_cards
+# d.shuffle_cards
+# print "\n"
+# d.show_cards
+# print "\n"
+# print d.deal
+# print "\n"
