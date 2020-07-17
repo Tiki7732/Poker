@@ -25,7 +25,7 @@ describe 'Part 3' do
                 hand.add_card(card3)
                 hand.add_card(card4)
                 hand.add_card(card5)
-                expect(hand.best_hand).to eq(:two_pair[card1.to_s, card2.to_s, card3.to_s])
+                expect(hand.best_hand).to eq(:ONE_PAIR[card1.to_s, card2.to_s, card3.to_s])
             end
         end
 
