@@ -27,8 +27,8 @@ class Hand
 
     end
 
-    def rank_cards
-
+    def rank_card(card)
+        rank = CARD_RANKINGS[card.symbol]
     end
 
     def rank_hand
