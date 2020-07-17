@@ -14,4 +14,13 @@ class Hand
                     :'8' => 7, :'7' => 8, :'6' => 9, :'5' => 10, :'4' => 11, 
                     :'3' => 12, :'2' => 13}
 
+    attr_reader :cards
+    def initialize
+        @cards = []
+    end
+
+    def add_card(card)
+        cards.push(card)
+    end
+
 end
