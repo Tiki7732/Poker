@@ -23,4 +23,16 @@ class Hand
         cards.push(card)
     end
 
+    def best_hand
+
+    end
+
+    def rank_cards
+
+    end
+
+    def rank_hand
+
+    end
+
 end
