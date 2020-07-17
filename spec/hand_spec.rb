@@ -18,19 +18,16 @@ describe 'Part 3' do
 
         end
         
-        describe '#strongest' do
-            it "should show the strongest hand" do
+        describe '#best_hand' do
+            it "should show the highest ranking hand" do
                 hand.add_card(card1)
                 hand.add_card(card2)
                 hand.add_card(card3)
                 hand.add_card(card4)
                 hand.add_card(card5)
-                expect(hand.strongest).to eq(card1, card2)
+                expect(hand.best_hand).to eq(:two_pair[card1.to_s, card2.to_s, card3.to_s])
             end
         end
 
-        describe '#winning?' do
-            it "should pick winning hand"
-        end
     end
 end
