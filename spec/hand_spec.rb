@@ -93,5 +93,22 @@ describe 'Part 3' do
             end
         end
 
+        describe "#flush?" do
+            it "should return true if hand is flush" do                
+                one_p.add_card(card1)
+                one_p.add_card(card2)
+                one_p.add_card(card3)
+                one_p.add_card(card4)
+                one_p.add_card(card5)
+                straight_flus.add_card(card6)
+                straight_flus.add_card(card7)
+                straight_flus.add_card(card8)
+                straight_flus.add_card(card9)
+                straight_flus.add_card(card10)
+                expect(straight_flus.flush?).to eq(true)
+                expect(one_p.flush?).to eq(false)
+            end
+        end
+
     end
 end
