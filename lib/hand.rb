@@ -28,6 +28,8 @@ class Hand
         case rank_hand
         when 1
             return [:ROYAL_FLUSH].concat(cards)
+        when 2
+            return [:STRAIGHT_FLUSH].concat(cards)
         when 9
             return [:ONE_PAIR].concat(find_matches)
         end
@@ -35,9 +37,11 @@ class Hand
 
     def rank_hand
         matches = find_matches
-        if cards.all? { |card| card.suit == cards.first.suit} &&
+        if flush? &&
             cards.all?{|card| rank_card(card) <= 5}
             return HAND_RANKINGS[:ROYAL_FLUSH]
+        elsif flush? && straight?
+            return HAND_RANKINGS[:STRAIGHT_FLUSH]
         elsif
             matches.length == 2
             return HAND_RANKINGS[:ONE_PAIR]
@@ -52,8 +56,6 @@ class Hand
         matches = cards.select{|card| card.symbol == card_hash.key(card_hash.values.max)}
         matches
     end
-
-
 
     def highest_card(cards_arr)
         rank = 20
@@ -79,6 +81,7 @@ class Hand
         return false
     end
 
-
-
+    def add_cards(card_arr)
+        @cards = card_arr
+    end
 end
