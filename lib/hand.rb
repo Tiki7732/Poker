@@ -57,6 +57,13 @@ class Hand
         false
     end
 
+    def flush?
+        test = cards.map{|card| card.suit}
+        test.uniq!
+        return true if test.length == 1
+        return false
+    end
+
     def rank_hand
         matches = find_matches
         if cards.all? { |card| card.suit == cards.first.suit} &&
