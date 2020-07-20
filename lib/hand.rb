@@ -1,7 +1,8 @@
 require_relative 'card'
 
 class Hand
-    HAND_RANKINGS = {:STRAIGHT_FLUSH => 1,
+    HAND_RANKINGS = {:ROYAL_FLUSH => 0,
+                :STRAIGHT_FLUSH => 1,
                 :FOUR_OF_A_KIND => 2,
                 :FULL_HOUSE => 3,
                 :FLUSH => 4,
@@ -28,11 +29,17 @@ class Hand
     end
 
     def rank_card(card)
-        rank = CARD_RANKINGS[card.symbol]
+        rank = CARD_RANKINGS[card.symbol] 
     end
 
     def rank_hand
-
+        case cards
+        when cards.all?{|card| card.suit == cards.first.suit} &&
+            cards.all?{|card| rank_card(card) <= 5}
+            return :ROYAL_FLUSH
+        else
+            return :HIGH_CARD
+        end
     end
 
 end
