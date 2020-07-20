@@ -51,6 +51,13 @@ class Hand
         CARD_RANKINGS[card.symbol] 
     end
 
+    def straight?
+        test = cards.map{|card| rank_card(card)}
+        test.sort!
+        return true if (test.last - test.first) == 4
+        false
+    end
+
     def rank_hand
         if cards.all? { |card| card.suit == cards.first.suit} &&
             cards.all?{|card| rank_card(card) <= 5}
