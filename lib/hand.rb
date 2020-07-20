@@ -24,12 +24,20 @@ class Hand
         cards.push(card)
     end
 
+    def find_matches
+        card_hash = Hash.new(0)
+        cards.each { |card| card_hash[card.symbol] += 1}
+        matches = cards.select{|card| card.symbol == card_hash.key(card_hash.values.max)}
+        matches
+    end
+
     def best_hand
-        case cards.rank_hand
+        case rank_hand
         when 1
-            return [:ROYAL_FLUSH, ]
-        when :ONE_PAIR
-            return [:ONE_PAIR, ]
+            return [:ROYAL_FLUSH].concat(cards)
+        when 9
+            #best = cards.map{|card| card.symbol}
+            return [:ONE_PAIR].concat(find_matches)
         end
     end
 
@@ -44,17 +52,12 @@ class Hand
     end
 
     def rank_hand
-        # case cards
-        # when cards.each {|card| p rank_card(card)} 
-        #     p cards.length
-        #     same_suit = cards.all? { |card| card.suit == cards.first.suit}
-        #     p same_suit
-        #     #&&
-        #     #cards.all?{|card| rank_card(card) <= 5}
-        #     return :ROYAL_FLUSH
-        # else
-        #     return :HIGH_CARD
-        # end
+        if cards.all? { |card| card.suit == cards.first.suit} &&
+            cards.all?{|card| rank_card(card) <= 5}
+            return HAND_RANKINGS[:ROYAL_FLUSH]
+        else
+            return HAND_RANKINGS[:HIGH_CARD]
+        end
     end
 
 end
