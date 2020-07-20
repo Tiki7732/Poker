@@ -36,7 +36,6 @@ class Hand
         when 1
             return [:ROYAL_FLUSH].concat(cards)
         when 9
-            #best = cards.map{|card| card.symbol}
             return [:ONE_PAIR].concat(find_matches)
         end
     end
@@ -59,9 +58,13 @@ class Hand
     end
 
     def rank_hand
+        matches = find_matches
         if cards.all? { |card| card.suit == cards.first.suit} &&
             cards.all?{|card| rank_card(card) <= 5}
             return HAND_RANKINGS[:ROYAL_FLUSH]
+        elsif
+            matches.length == 2
+            return HAND_RANKINGS[:ONE_PAIR]
         else
             return HAND_RANKINGS[:HIGH_CARD]
         end
