@@ -42,6 +42,17 @@ describe 'Part 3' do
             end
         end
 
+        describe "#find_matches" do
+            it "should return cards with matching symbols" do
+                hand.add_card(card1)
+                hand.add_card(card2)
+                hand.add_card(card3)
+                hand.add_card(card4)
+                hand.add_card(card5)
+                expect(hand.find_matches).to eq([card1, card2])
+            end
+        end
+
         describe "#rank_hand" do
         let(:card1){double("card1", :symbol => :A, :suit => :♣)}
         let(:card2){double("card2", :symbol => :K, :suit => :♣)}
@@ -54,7 +65,7 @@ describe 'Part 3' do
                 hand.add_card(card3)
                 hand.add_card(card4)
                 hand.add_card(card5)
-                expect(hand.rank_hand).to eq(:ROYAL_FLUSH)
+                expect(hand.rank_hand).to eq(1)
             end
         end
 
