@@ -24,6 +24,12 @@ describe 'Part 3' do
                 expect(hand.rank_card(card1)).to eq(2)
             end
         end
+
+        describe "#highest_card" do
+            it "should return rank of highest card" do
+                expect(hand.highest_card([card2,card3])).to eq(2)
+            end
+        end
         
         describe '#best_hand' do
             it "should show the highest ranking hand" do
