@@ -30,32 +30,67 @@ class Hand
             return [:ROYAL_FLUSH].concat(cards)
         when 2
             return [:STRAIGHT_FLUSH].concat(cards)
-        when 9
-            discard = cards - find_matches
+        when 3
+            return [:FOUR_OF_A_KIND].concat(cards)
+        when 4
+            return [:FULL_HOUSE].concat(cards)
+        when 5
+            return [:FLUSH].concat(cards)
+        when 6
+            return [:STRAIGHT].concat(cards)
+        when 7
+            discard = cards - find_matches(cards)
             off_suit = highest_card(discard)
-            return [:ONE_PAIR].concat(find_matches).push(off_suit)
+            return [:THREE_OF_A_KIND].concat(find_matches(cards)).push(off_suit)
+        when 8
+            discard = cards - find_matches(cards)
+            p find_matches(cards)
+            p discard
+            second_pair = find_matches(discard)
+            p second_pair
+            off_suit = discard - second_pair
+            p off_suit
+            return [:TWO_PAIR].concat(find_matches(cards), second_pair, off_suit)
+        when 9
+            discard = cards - find_matches(cards)
+            off_suit = highest_card(discard)
+            return [:ONE_PAIR].concat(find_matches(cards)).push(off_suit)
+        when 10
+            return[:HIGH_CARD].push(highest_card(cards))
         end
     end
 
     def rank_hand
-        matches = find_matches
+        matches = find_matches(cards)
+        off_suit = find_matches(cards - matches)
         if flush? &&
             cards.all?{|card| rank_card(card) <= 5}
             return HAND_RANKINGS[:ROYAL_FLUSH]
         elsif flush? && straight?
             return HAND_RANKINGS[:STRAIGHT_FLUSH]
-        elsif
-            matches.length == 2
+        elsif matches.length == 4
+            return HAND_RANKINGS[:FOUR_OF_A_KIND]
+        elsif matches.length == 3 && off_suit.length == 2
+            return HAND_RANKINGS[:FULL_HOUSE]
+        elsif flush? 
+            return HAND_RANKINGS[:FLUSH]
+        elsif straight?
+            return HAND_RANKINGS[:STRAIGHT]
+        elsif matches.length == 3 && off_suit.length < 2
+            return HAND_RANKINGS[:THREE_OF_A_KIND]
+        elsif matches.length == 2 && off_suit.length == 2
+            return HAND_RANKINGS[:TWO_PAIR]
+        elsif matches.length == 2 && off_suit.length < 2
             return HAND_RANKINGS[:ONE_PAIR]
         else
             return HAND_RANKINGS[:HIGH_CARD]
         end
     end
 
-    def find_matches
+    def find_matches(cards_arr)
         card_hash = Hash.new(0)
-        cards.each { |card| card_hash[card.symbol] += 1}
-        matches = cards.select{|card| card.symbol == card_hash.key(card_hash.values.max)}
+        cards_arr.each { |card| card_hash[card.symbol] += 1}
+        matches = cards_arr.select{|card| card.symbol == card_hash.key(card_hash.values.max)}
         matches
     end
 
