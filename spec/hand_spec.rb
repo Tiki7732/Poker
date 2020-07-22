@@ -35,14 +35,14 @@ describe 'Part 3' do
 
         describe "#highest_card" do
             it "should return rank of highest card" do
-                expect(one_p.highest_card([card2,card3])).to eq(2)
+                expect(one_p.highest_card([card2,card3])).to eq(card2)
             end
         end
         
         describe '#best_hand' do
             it "should show the highest ranking hand" do
                 one_p.add_cards(hand1)
-                expect(one_p.best_hand).to eq([:ONE_PAIR, card1.to_s, card2.to_s, card3.to_s])
+                expect(one_p.best_hand).to eq([:ONE_PAIR, card1, card2, card3])
             end
         end
 
