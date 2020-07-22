@@ -31,7 +31,9 @@ class Hand
         when 2
             return [:STRAIGHT_FLUSH].concat(cards)
         when 9
-            return [:ONE_PAIR].concat(find_matches)
+            discard = cards - find_matches
+            off_suit = highest_card(discard)
+            return [:ONE_PAIR].concat(find_matches).push(off_suit)
         end
     end
 
@@ -58,9 +60,8 @@ class Hand
     end
 
     def highest_card(cards_arr)
-        rank = 20
-        cards_arr.each {|card| rank = rank_card(card) if rank_card(card) < rank}
-        rank
+        cards_arr.sort!{|card| rank_card(card)}.reverse!
+        cards_arr.first
     end
 
     def rank_card(card)
