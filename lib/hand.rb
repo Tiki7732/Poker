@@ -44,12 +44,8 @@ class Hand
             return [:THREE_OF_A_KIND].concat(find_matches(cards)).push(off_suit)
         when 8
             discard = cards - find_matches(cards)
-            p find_matches(cards)
-            p discard
             second_pair = find_matches(discard)
-            p second_pair
             off_suit = discard - second_pair
-            p off_suit
             return [:TWO_PAIR].concat(find_matches(cards), second_pair, off_suit)
         when 9
             discard = cards - find_matches(cards)
