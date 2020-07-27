@@ -83,6 +83,14 @@ class Hand
         end
     end
 
+    def show_hand
+        cards.each{|card| print card.to_s + " "}
+    end
+
+    def remove_card(positions)
+        positions.each {|pos| cards.delete_at(pos - 1)}
+    end
+
     def find_matches(cards_arr)
         card_hash = Hash.new(0)
         cards_arr.each { |card| card_hash[card.symbol] += 1}
