@@ -12,6 +12,22 @@ class Player
         hand.add_card(card)
     end
 
+    def discard
+        p "Which cards would you like to discard?"
+        hand.show_hand
+        p "\n"
+        p "1 2 3 4 5 or none"
+        discard = gets.chomp
+        case discard
+        when "none"
+            return
+        else
+            cards = discard.split("").map!(&:to_i)
+            hand.remove_card(cards)
+        end
+
+    end
+
     def bet
         amount = nil
         until amount && amount.between?(1, pot)
