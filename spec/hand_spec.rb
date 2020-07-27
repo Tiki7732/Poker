@@ -95,5 +95,12 @@ describe 'Part 3' do
             end
         end
 
+        describe "#show_hand" do
+            it "should print out hand" do
+                straight_flus.add_cards(hand2)
+                straight_flus.show_hand
+            end
+        end
+
     end
 end
