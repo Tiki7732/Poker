@@ -68,6 +68,10 @@ class Player
             return amount + minimum
         end
     end
+
+    def add_to_pot(amount)
+        @pot += amount
+    end
 end
 
 # lt = Player.new
