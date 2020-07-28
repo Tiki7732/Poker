@@ -35,13 +35,13 @@ class Player
             return nil
         end
 
-        p "The minimum bet is #{minimum}, you can fold, see, or raise"
+        p "The minimum bet is #{minimum}, you can fold, call, or raise"
         action = gets.chomp
 
         case action
         when 'fold'
             return nil
-        when 'see'
+        when 'call'
             @pot -= minimum
             return minimum
         when 'raise'
