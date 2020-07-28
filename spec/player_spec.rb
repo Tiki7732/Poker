@@ -14,8 +14,20 @@ describe "Part 4" do
         end
 
         describe "#bet" do
-            it "should place a bet between 0 and total pot of player" do
-                expect(player1.bet).to be_between(1, player1.pot)
+            context "when folding" do
+                it "should return nil" do
+                    expect(player1.bet(5)).to equal(nil)
+                end
+            end
+            context "when seeing" do
+                it "should return same amount as minimum bet" do
+                    expect(player1.bet(5)).to equal(5)
+                end
+            end
+            context "when raising" do
+                it "should raise minimum bet" do
+                    expect(player1.bet(5)).to be > 5
+                end
             end
         end
 
