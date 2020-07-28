@@ -19,7 +19,7 @@ describe "Part 4" do
                     expect(player1.bet(5)).to equal(nil)
                 end
             end
-            context "when seeing" do
+            context "when calling" do
                 it "should return same amount as minimum bet" do
                     expect(player1.bet(5)).to equal(5)
                 end
