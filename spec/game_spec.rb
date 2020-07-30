@@ -40,7 +40,9 @@ describe "Part 5" do
         end
 
         describe "#pot_amount?" do
-            it "should return amount in pot"
+            it "should return amount in pot" do
+                expect(game.pot_amount?).to eq(game.pot)
+            end
         end
 
         describe "#get_bets" do
