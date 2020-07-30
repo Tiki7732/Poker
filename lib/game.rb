@@ -3,12 +3,13 @@ require_relative 'player'
 
 class Game
 
-    attr_reader :deck, :players, :current_player
+    attr_reader :deck, :players, :current_player, :pot
     def initialize
         @deck = Deck.new
         @players = []
         4.times {@players.push(Player.new)}
         @current_player = @players.first
+        @pot = 0
     end
         
     def deal_cards
@@ -28,5 +29,9 @@ class Game
     def next_player
         players.rotate!
         @current_player = players.first
+    end
+
+    def pot_amount?
+        @pot
     end
 end
