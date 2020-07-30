@@ -77,6 +77,15 @@ class Player
         return true if hand.cards.length == 5
         false
     end
+
+    def ante_up(minimum)
+      if @pot < minimum
+          p "You're out of money!" 
+          return nil
+      end
+      @pot -= minimum
+      return minimum
+    end
 end
 
 # lt = Player.new
