@@ -30,7 +30,13 @@ describe "Part 5" do
         end
 
         describe "#next_player" do
-            it "should rotate to next player"
+            it "should rotate to next player" do
+                player1 = game.current_player
+                game.next_player
+                player2 = game.current_player
+                expect(player1).not_to eq(player2)
+                
+            end
         end
 
         describe "#pot_amount?" do
