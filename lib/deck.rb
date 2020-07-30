@@ -8,11 +8,12 @@ class Deck
     
     attr_reader :cards
     def initialize
-        @cards = []
-        self.populate_deck
+       
+        # self.populate_deck
     end
 
     def populate_deck
+        @cards = []
         SUITS.each do |suit|
             color = :black if (suit == :♠ || suit == :♣)
             color = :red if (suit == :♥ || suit == :♦)
@@ -20,7 +21,6 @@ class Deck
                 @cards.push(Card.new(symbol, color, suit))
             end
         end
-
     end
 
     def show_cards
