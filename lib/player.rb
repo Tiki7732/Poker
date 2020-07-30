@@ -72,6 +72,11 @@ class Player
     def add_to_pot(amount)
         @pot += amount
     end
+
+    def full_hand?
+        return true if hand.cards == 5
+        false
+    end
 end
 
 # lt = Player.new
