@@ -74,7 +74,7 @@ class Player
     end
 
     def full_hand?
-        return true if hand.cards == 5
+        return true if hand.cards.length == 5
         false
     end
 end
