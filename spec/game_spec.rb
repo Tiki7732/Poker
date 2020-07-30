@@ -65,5 +65,23 @@ describe "Part 5" do
             end
         end
 
+        describe "#bet" do
+            context "when player doesn't fold" do
+                it "should get bet from player" do
+                    game.get_bet
+                    expect(game.pot).to be > 0
+                end
+            end
+            # context "when the player folds" do
+            # let(:player1){double("player1", :pot => 0)}
+            # let(:game2){double("game2", :current_player => player1, :pot => 0)}
+            #     it "should not add to pot" do
+            #         allow(game2).to receive(:get_bet)
+            #         game2.get_bet
+            #         expect(game2.pot).to be 0
+            #     end
+            # end
+        end
+
     end
 end

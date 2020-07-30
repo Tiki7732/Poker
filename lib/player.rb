@@ -13,7 +13,7 @@ class Player
     end
 
     def discard
-        p "Which cards would you like to discard?"
+        p "You can discard up to 3 cards, which cards would you like to discard?"
         hand.show_hand
         print "\n"
         print " 1  2  3  4  5 or none \n"
