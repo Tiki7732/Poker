@@ -15,8 +15,8 @@ class Player
     def discard
         p "Which cards would you like to discard?"
         hand.show_hand
-        p "\n"
-        p "1 2 3 4 5 or none"
+        print "\n"
+        print " 1  2  3  4  5 or none \n"
         discard = gets.chomp
         case discard
         when "none"
