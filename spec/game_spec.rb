@@ -7,28 +7,33 @@ describe "Part 5" do
 
         describe "#initialize" do
             it "should initialize a new deck" do
-                expect(game.deck.length).to eq(52)
+                expect(game.deck.cards.length).to eq(52)
             end
             it "should have an array of players" do
                 expect(game.players).to be_a(Array)
             end
         end
 
-        describe "#deal" do
+        describe "#deal_cards" do
             it "should deal each player 5 cards" do
+                game.deal_cards
                 expect(game.players.all?{|player| player.full_hand?}).to be true
             end
         end
 
         describe "#more_cards" do
-            it "should hand out a number of cards to a player"
+            it "should hand out a number of cards to a player" do
+                game.deal_cards
+                game.more_cards(game.current_player.discard)
+                expect(game.current_player.full_hand?).to be true
+            end
         end
 
         describe "#next_player" do
             it "should rotate to next player"
         end
 
-        describe "#see_pot" do
+        describe "#pot_amount?" do
             it "should return amount in pot"
         end
 
