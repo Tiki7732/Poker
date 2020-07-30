@@ -45,10 +45,12 @@ describe "Part 5" do
             end
         end
 
-        describe "#get_bets" do
-            it "should rotate through players and ask for bets"
+        describe "#ante" do
+            it "should get ante current player and add to pot" do
+                game.ante
+                expect(game.pot_amount?).to be > 0
+            end
         end
-
 
     end
 end
