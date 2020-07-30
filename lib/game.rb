@@ -24,4 +24,9 @@ class Game
         num_cards.times {@current_player.receive_card(deck.deal)}
         current_player.hand.show_hand
     end
+
+    def next_player
+        players.rotate!
+        @current_player = players.first
+    end
 end
