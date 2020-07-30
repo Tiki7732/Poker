@@ -46,9 +46,22 @@ describe "Part 5" do
         end
 
         describe "#ante" do
-            it "should get ante current player and add to pot" do
-                game.ante
-                expect(game.pot_amount?).to be > 0
+            context "when the player has enough" do
+                it "should get ante from current player and add to pot" do
+                    game.ante
+                    expect(game.pot).to eq(game.minimum)
+                    expect(game.current_player.pot).to eq(998)
+                end
+            end
+
+            context "when the player doesn't have enough money" do
+                let(:player1){double("player1", :pot => 0)}
+                let(:game2){double("game2", :current_player => player1, :pot => 0)}
+                it "should not add ante" do
+                    allow(game2).to receive(:ante)
+                    game2.ante
+                    expect(game2.pot).to be 0
+                end
             end
         end
 
