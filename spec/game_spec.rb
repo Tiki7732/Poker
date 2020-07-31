@@ -68,7 +68,7 @@ describe "Part 5" do
         describe "#bet" do
             context "when player doesn't fold" do
                 it "should get bet from player" do
-                    game.get_bet
+                    game.get_bet(2)
                     expect(game.pot).to be > 0
                 end
             end

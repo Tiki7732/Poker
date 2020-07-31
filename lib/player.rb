@@ -2,10 +2,15 @@ require_relative 'hand'
 
 class Player
 
-    attr_accessor :hand, :pot
-    def initialize
+    attr_accessor :hand, :pot, :name
+    def initialize(name)
+        @name = name
         @hand = Hand.new
         @pot = 1000
+    end
+    
+    def to_s
+        @name
     end
 
     def receive_card(card)
@@ -13,7 +18,7 @@ class Player
     end
 
     def discard
-        p "You can discard up to 3 cards, which cards would you like to discard?"
+        p "#{name} can discard up to 3 cards, which cards would you like to discard?"
         hand.show_hand
         print "\n"
         print " 1  2  3  4  5 or none \n"
@@ -35,7 +40,7 @@ class Player
             return nil
         end
 
-        p "The minimum bet is #{minimum}, you can fold, call, or raise"
+        print " \n The minimum bet is #{minimum}, you can fold, call, or raise \n"
         action = gets.chomp
 
         case action
@@ -85,6 +90,10 @@ class Player
       end
       @pot -= minimum
       return minimum
+    end
+
+    def clear_hand
+        @hand.cards = []
     end
 end
 

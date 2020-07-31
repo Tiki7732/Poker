@@ -15,7 +15,7 @@ class Hand
                     :'8' => 7, :'7' => 8, :'6' => 9, :'5' => 10, :'4' => 11, 
                     :'3' => 12, :'2' => 13}
 
-    attr_reader :cards
+    attr_accessor :cards
     def initialize
         @cards = []
     end
@@ -88,7 +88,7 @@ class Hand
     end
 
     def remove_card(positions)
-        positions.each {|pos| cards.delete_at(pos - 1)}
+        positions.sort.reverse.each {|pos| cards.delete_at(pos - 1)}
     end
 
     def find_matches(cards_arr)
